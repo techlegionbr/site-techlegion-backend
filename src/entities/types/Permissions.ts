@@ -1,0 +1,12 @@
+export type TPermissions =
+  | "seePanel"
+  | "createAdmin"
+  | "manageAdmin"
+  | "manageAllAdmins"
+  | "createPost"
+  | "managePost"
+  | "manageAllPosts"
+  | "createUser"
+  | "manageUser"
+  | "manageAllUsers"
+  | "editProfile"
