@@ -1,20 +1,22 @@
-import { model, Schema, type Document } from "mongoose"
+import { Schema, model } from "mongoose"
 import { v4 as uuidv4 } from "uuid"
 
-import { type IUserModel } from "../types/User"
+import { profileDefault } from "../../settings"
+import { type IUserSchemaDB } from "../../types/User"
 
-const UserSchema = new Schema({
+interface IUserModelDocument extends IUserSchemaDB, Document {}
+
+const UserSchema = new Schema<IUserModelDocument>({
   name: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
   profile: {
     type: String,
     required: false,
-    default:
-      "https://storage.prompt-hunt.workers.dev/clgzqg3dz004dk6082ji3cesa_1",
+    default: profileDefault,
   },
   code: { type: String, required: false, default: uuidv4() },
   inUse: { type: Boolean, required: false, default: false },
 })
 
-export default model<IUserModel & Document>("User", UserSchema)
+export default model<IUserModelDocument>("User", UserSchema)

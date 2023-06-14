@@ -1,6 +1,6 @@
-import { type TPermissions } from "../../types/Permissions"
+import { type TPermissions } from "../../../types/Permissions"
 
-export interface IUserModel {
+export interface IUserSchemaDB {
   name: string
   email: string
   password: string
@@ -10,7 +10,7 @@ export interface IUserModel {
   permissions: TPermissions[]
 }
 
-export type IUserSchemaValidation = Omit<
-  IUserModel,
+export type IUserSchemaCreation = Omit<
+  IUserSchemaDB,
   "code" | "inUse" | "profile" | "permissions"
 >

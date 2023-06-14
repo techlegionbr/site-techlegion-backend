@@ -20,6 +20,12 @@
         ]
     },
     "rules": {
+        "@typescript-eslint/no-misused-promises": [
+            "error",
+            {
+                "checksConditionals": true
+            }
+        ],
         "import-helpers/order-imports": [
             "error",
             {
