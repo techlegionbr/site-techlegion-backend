@@ -15,8 +15,17 @@ const createAdmin = async (req: Request, res: Response): Promise<void> => {
   const { error } = AdminCreationSchema(admin)
 
   if (error !== undefined) {
-    res.status(401).send({
+    res.status(400).send({
       message: error.message,
+    })
+    return
+  }
+
+  const adminWithTheSameEmail = await Admin.findOne({ email: admin.email })
+
+  if (adminWithTheSameEmail !== null) {
+    res.status(409).send({
+      message: "Esse email já foi registrado! Tente outro novamente.",
     })
     return
   }
