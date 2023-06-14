@@ -3,12 +3,18 @@ import { model, Schema, type Document } from "mongoose"
 import { type TPermissions } from "../../types/Permissions"
 import { type IAdminModel } from "../types/Admin"
 
-const AdminSchema = new Schema<Record<IAdminModel, string>>({
+interface IAdminModelDocument extends IAdminModel, Document {}
+
+const AdminSchema = new Schema<IAdminModelDocument>({
   name: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
   permissions: {
-    type: Array,
+    type: [
+      {
+        type: String,
+      },
+    ],
     required: false,
     default: [
       "createAdmin",
@@ -26,4 +32,4 @@ const AdminSchema = new Schema<Record<IAdminModel, string>>({
   },
 })
 
-export default model<IAdminModel & Document>("Admin", AdminSchema)
+export default model<IAdminModelDocument>("Admin", AdminSchema)
