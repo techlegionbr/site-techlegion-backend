@@ -27,7 +27,6 @@ const createAdmin = async (req: Request, res: Response): Promise<void> => {
     res.status(409).send({
       message: "Esse email já foi registrado! Tente outro novamente.",
     })
-    return
   }
 
   const passwordGenerated = generateID(10)

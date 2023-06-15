@@ -1,4 +1,4 @@
-import { type TPermissions } from "../../../types/Permissions"
+import { type TPermissions } from "../../../security/permissions/types"
 
 export interface IAdminSchemaDB {
   name: string

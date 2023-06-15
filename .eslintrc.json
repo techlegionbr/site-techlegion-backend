@@ -23,7 +23,7 @@
         "@typescript-eslint/no-misused-promises": [
             "error",
             {
-                "checksConditionals": true
+                "checksVoidReturn": false
             }
         ],
         "import-helpers/order-imports": [

@@ -1,4 +1,4 @@
-import { type TPermissions } from "../../../types/Permissions"
+import { type TPermissions } from "../../../security/permissions/types"
 
 export interface IUserSchemaDB {
   name: string
@@ -8,9 +8,10 @@ export interface IUserSchemaDB {
   code: string
   profile: string
   permissions: TPermissions[]
+  createdAt: Date
 }
 
 export type IUserSchemaCreation = Omit<
   IUserSchemaDB,
-  "code" | "inUse" | "profile" | "permissions"
+  "code" | "inUse" | "profile" | "permissions" | "createdAt"
 >

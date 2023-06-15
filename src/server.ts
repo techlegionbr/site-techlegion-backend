@@ -1,8 +1,10 @@
 import bodyParser from "body-parser"
+import cookieParser from "cookie-parser"
 import dotenv from "dotenv"
 import express from "express"
 import mongoose from "mongoose"
 
+import authentiactionRouters from "./app/routers/authentication"
 import entitiesRouters from "./app/routers/entities"
 import { endPointRouter } from "./app/settings/routers"
 
@@ -14,10 +16,13 @@ const MODE = process.env?.MODE ?? "development"
 
 const app = express()
 
+app.use(cookieParser())
+
 app.use(bodyParser.json({ limit: "3000mb" }))
 app.use(bodyParser.urlencoded({ limit: "3000mb", extended: true }))
 
 app.use(endPointRouter, entitiesRouters)
+app.use(endPointRouter, authentiactionRouters)
 
 mongoose
   .connect(MONGO_CONNECTION_URL)
